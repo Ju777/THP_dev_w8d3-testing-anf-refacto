@@ -32,19 +32,19 @@ class Shop {
   checkName = (item, degradSpeed) => {
     switch(true) {
       case (item.name === 'Aged Brie'):
-        console.log("On est dans le case Aged Brie.");
+        // console.log("On est dans le case Aged Brie.");
         item.quality += 1;
         break;
       case (item.name === 'Sulfuras') :
-        console.log("On est dans le case Sulfuras.");
+        // console.log("On est dans le case Sulfuras.");
         break;
       case (item.name === 'Backstage passes to a TAFKAL80ETC concert') :
-        console.log("On est dans le case Backstage passes.");
+        // console.log("On est dans le case Backstage passes.");
         switch(true) {
-          case (item.sellIn <= 10) :
+          case (item.sellIn <= 10 && item.sellIn > 5) :
             item.quality += 2;
             break;
-          case (item.sellIn <= 5) :
+          case (item.sellIn <= 5 && item.sellIn > 0) :
             item.quality += 3;
             break;
           case (item.sellIn <= 0) :
@@ -56,18 +56,20 @@ class Shop {
         break;
       case (item.name.indexOf("Conjured") !== -1) :
         item.quality -= degradSpeed*2;
-        console.log("On est dans le cas Conjured.");
+        // console.log("On est dans le cas Conjured.");
         break;
       default:
-        console.log("On est dans le default");
+        // console.log("On est dans le default");
         item.quality -= 1*degradSpeed;
     }
 
   }
 
   checkQualityLimits = (item) => {
-    if (item.quality < 0) { item.quality = 0 }
-    if (item.quality > 50 ) { item.quality = 50 }
+    if (item.name !== "Sulfuras") {
+      if (item.quality < 0) { item.quality = 0 }
+      if (item.quality > 50 ) { item.quality = 50 }
+    }
   }
 
   updateSellIn = (item) => {
@@ -84,14 +86,14 @@ module.exports = {
 // const perform = () => {
 //   console.log("test");
 
-//   const item1 = new Item("couteau", 30, 10);
-//   const item2 = new Item("fourchette", 20, 25);
-//   const item3 = new Item("Aged Brie", 20, 30);
-//   const item4 = new Item("Sulfuras", Infinity, 80);
-//   const item5 = new Item("Backstage passes to a TAFKAL80ETC concert", 30, 10);
-//   const item6 = new Item("Conjured something", 30, 25);
+  // const item1 = new Item("couteau", 30, 10);
+  // const item2 = new Item("fourchette", 20, 25);
+  // const item3 = new Item("Aged Brie", 20, 30);
+  // const item4 = new Item("Sulfuras", Infinity, 80);
+  // const item5 = new Item("Backstage passes to a TAFKAL80ETC concert", 30, 10);
+  // const item6 = new Item("Conjured something", 30, 25);
 
-//   const shop = new Shop([item1, item2, item3, item4, item5, item6]);
+  // const shop = new Shop([item1, item2, item3, item4, item5, item6]);
 
 //   // console.log(shop);
 
